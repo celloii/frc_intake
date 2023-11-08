@@ -39,8 +39,9 @@ public class ArcadeMoveWithPID extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drivetrain.setLeftSpeed(Config.kMotorSpeed*m_PID.calculate((m_drivetrain.getLeftTicks() - m_leftStartPosition), m_distance));
-    m_drivetrain.setRightSpeed(Config.kMotorSpeed*m_PID.calculate((m_drivetrain.getLeftTicks() - m_leftStartPosition), m_distance));
+    double m_PIDspeed = m_PID.calculate(m_drivetrain.getRightTicks() - m_leftStartPosition, m_distance);
+    m_drivetrain.setLeftSpeed(Config.kMotorSpeed*m_PIDspeed);
+    m_drivetrain.setRightSpeed(Config.kMotorSpeed*m_PIDspeed);
   }
 
   // Called once the command ends or is interrupted.
