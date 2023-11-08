@@ -6,10 +6,13 @@ package frc.robot;
 
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ArcadeIntake;
+import frc.robot.commands.ArcadeMoveWithPID;
+import frc.robot.commands.ArcadeTurnWithPID;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -19,7 +22,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and trigger mappings) should be declared here.
  */
-public class RobotContainer {
+public class RobotContainer{
   // The robot's subsystems and commands are defined here...
   private static final class Config{
     public static final int k_JoystickPort = 0;
@@ -29,6 +32,10 @@ private Joystick m_joystick = new Joystick(Config.k_JoystickPort);
   private Intake m_intake = new Intake();
   private ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_joystick,m_drivetrain);
   private ArcadeIntake m_arcadeIntake = new ArcadeIntake(m_joystick,m_intake);
+  private SequentialCommandGroup m_sequentialCommandGroup = new SequentialCommandGroup();
+  private ArcadeTurnWithPID m_arcadeTurnWithPID = new ArcadeTurnWithPID(0, m_drivetrain, 0);
+  private ArcadeMoveWithPID m_ArcadeMoveWithPID = new ArcadeMoveWithPID(m_drivetrain, 0);
+
 
   
 
@@ -59,6 +66,7 @@ private Joystick m_joystick = new Joystick(Config.k_JoystickPort);
   public Command getAutonomousCommand() {
     m_drivetrain.getDefaultCommand(m_arcadeDrive);
     m_arcadeIntake.schedule();
+    m_sequentialCommandGroup.addCommands(m_ArcadeMoveWithPID,m_arcadeTurnWithPID);
     
     return null;
   }
