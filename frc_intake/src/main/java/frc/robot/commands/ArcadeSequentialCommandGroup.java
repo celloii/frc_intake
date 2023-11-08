@@ -13,15 +13,9 @@ public class ArcadeSequentialCommandGroup extends SequentialCommandGroup {
   public ArcadeSequentialCommandGroup() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands();
-    ArcadeMoveWithPID();
-    ArcadeTurnWithPID();
+    addCommands(new ArcadeMoveWithPID(null, 0),new ArcadeTurnWithPID(0, null, 0));
+
     
   }
 
-  private void ArcadeMoveWithPID() {
-  }
-
-  private void ArcadeTurnWithPID() {
-  }
 }

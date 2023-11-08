@@ -66,7 +66,7 @@ private Joystick m_joystick = new Joystick(Config.k_JoystickPort);
   public Command getAutonomousCommand() {
     m_drivetrain.getDefaultCommand(m_arcadeDrive);
     m_arcadeIntake.schedule();
-    m_sequentialCommandGroup.addCommands(m_ArcadeMoveWithPID,m_arcadeTurnWithPID);
+    m_sequentialCommandGroup.addCommands();
     
     return null;
   }
