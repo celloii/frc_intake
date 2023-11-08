@@ -33,7 +33,7 @@ public class ArcadeTurnWithPID extends CommandBase {
   }
 
   private double m_radius = m_distance/m_angle;
-  private double m_rightMotorGoal = m_angle*((m_radius + Config.robotWidth/2)/m_radius)*Config.ticksPerFoot;
+  private double m_rightMotorGoal = m_angle*(m_radius + Config.robotWidth/2)*Config.ticksPerFoot;
 
   // Called when the command is initially scheduled.
   @Override
@@ -45,7 +45,7 @@ public class ArcadeTurnWithPID extends CommandBase {
   @Override
   public void execute() {
     double m_PIDspeed = m_pid.calculate(m_drivetrain.getRightTicks() - m_leftStartPosition, m_rightMotorGoal);
-    m_drivetrain.setLeftSpeed(((m_radius - Config.robotWidth/2)/m_radius + Config.robotWidth/2)*Config.kMotorSpeed*m_PIDspeed);
+    m_drivetrain.setLeftSpeed(((m_radius - Config.robotWidth/2)/(m_radius + Config.robotWidth/2))*Config.kMotorSpeed*m_PIDspeed);
     m_drivetrain.setRightSpeed(Config.kMotorSpeed*m_PIDspeed);
   }
 
@@ -59,6 +59,6 @@ public class ArcadeTurnWithPID extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Math.abs(m_drivetrain.getLeftTicks()-m_leftStartPosition) < 0.002;
+    return Math.abs(m_drivetrain.getLeftTicks()-m_leftStartPosition) < 0.0002;
   }
 }
