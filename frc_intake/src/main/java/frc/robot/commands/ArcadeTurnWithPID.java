@@ -25,7 +25,7 @@ public class ArcadeTurnWithPID extends CommandBase {
   private double m_angle;
 
   /** Creates a new ArcadeTurnWithPID. */
-  public ArcadeTurnWithPID(double distance, Drivetrain drivetrain, double angle) {
+  public ArcadeTurnWithPID(Drivetrain drivetrain, double distance, double angle) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_distance = distance;
     m_drivetrain = drivetrain;

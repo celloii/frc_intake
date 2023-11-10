@@ -5,15 +5,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.subsystems.Drivetrain;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ArcadeSequentialCommandGroup extends SequentialCommandGroup {
+public class AutoPath extends SequentialCommandGroup {
   /** Creates a new ArcadeSequentialCommandGroup. */
-  public ArcadeSequentialCommandGroup() {
+  public AutoPath(Drivetrain drivetrain) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new ArcadeMoveWithPID(null, 0),new ArcadeTurnWithPID(0, null, 0));
+    addCommands(
+      new ArcadeTurnWithPID(0, drivetrain, 0)
+    
+    
+    
+    );
 
     
   }
