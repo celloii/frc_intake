@@ -8,6 +8,8 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ArcadeIntake;
 import frc.robot.commands.ArcadeMoveWithPID;
 import frc.robot.commands.ArcadeTurnWithPID;
+import frc.robot.commands.AutoPath;
+
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.Joystick;
@@ -32,7 +34,7 @@ private Joystick m_joystick = new Joystick(Config.k_JoystickPort);
   private Intake m_intake = new Intake();
   private ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_joystick,m_drivetrain);
   private ArcadeIntake m_arcadeIntake = new ArcadeIntake(m_joystick,m_intake);
-  private SequentialCommandGroup m_sequentialCommandGroup = new SequentialCommandGroup();
+  private SequentialCommandGroup m_AutoPath = new AutoPath(m_drivetrain);
 
 
   
@@ -64,8 +66,7 @@ private Joystick m_joystick = new Joystick(Config.k_JoystickPort);
   public Command getAutonomousCommand() {
     m_drivetrain.getDefaultCommand(m_arcadeDrive);
     m_arcadeIntake.schedule();
-    m_sequentialCommandGroup.addCommands(new ArcadeTurnWithPID(Math.PI, m_drivetrain, Math.PI/2));
-    
     return null;
+    //return m_AutoPath;
   }
 }

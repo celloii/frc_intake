@@ -12,10 +12,10 @@ import frc.robot.commands.ArcadeDrive;
 /** Add your docs here. */
 public class Drivetrain {
     private static final class Config{
-        public static final int kRightPrimaryID = 1;
-        public static final int kRightSecondaryID = 2;
-        public static final int kLeftPrimaryID=3;
-        public static final int kLeftSecondaryID=4;
+        public static final int kRightPrimaryID = 3;
+        public static final int kRightSecondaryID = 4;
+        public static final int kLeftPrimaryID=1;
+        public static final int kLeftSecondaryID=2;
       }
     private WPI_TalonFX m_rightPrimary = new WPI_TalonFX(Config.kRightPrimaryID);
     private WPI_TalonFX m_rightSecondary = new WPI_TalonFX(Config.kRightSecondaryID);
@@ -58,8 +58,7 @@ public class Drivetrain {
       // This method will be called once per scheduler run
     }
 
-    public void getDefaultCommand(ArcadeDrive m_arcadeDrive) {
-    }
+    public void getDefaultCommand(ArcadeDrive m_arcadeDrive) {}
   
 
 }

@@ -15,10 +15,10 @@ public class AutoPath extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new ArcadeTurnWithPID(0, drivetrain, 0)
-    
-    
-    
+      new ArcadeTurnWithPID(drivetrain, 0, 60),
+      new ArcadeTurnWithPID(drivetrain, 4.58, -120),
+      new ArcadeTurnWithPID(drivetrain, 9.16, 120),
+      new ArcadeTurnWithPID(drivetrain, 6.54, -120)
     );
 
     
