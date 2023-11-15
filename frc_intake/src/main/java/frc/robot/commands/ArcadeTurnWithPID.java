@@ -14,7 +14,6 @@ public class ArcadeTurnWithPID extends CommandBase {
     public static final double kI = 0;
     public static final double kD = 0;
     public static final double ticksPerFoot = 1024*Math.PI;
-    public static final double kMotorSpeed = 0.4;
     public static final double robotWidth = 2.25;
     public static final double kGearboxReduction = 10.65;
   }
@@ -46,8 +45,8 @@ public class ArcadeTurnWithPID extends CommandBase {
   @Override
   public void execute() {
     double m_PIDspeed = m_pid.calculate(m_drivetrain.getRightTicks() - m_rightStartPosition, m_rightMotorGoal);
-    m_drivetrain.setLeftSpeed(((m_radius - Config.robotWidth/2)/(m_radius + Config.robotWidth/2))*Config.kMotorSpeed*m_PIDspeed);
-    m_drivetrain.setRightSpeed(Config.kMotorSpeed*m_PIDspeed);
+    m_drivetrain.setLeftSpeed(((m_radius - Config.robotWidth/2)/(m_radius + Config.robotWidth/2))*m_PIDspeed);
+    m_drivetrain.setRightSpeed(m_PIDspeed);
   }
 
   // Called once the command ends or is interrupted.

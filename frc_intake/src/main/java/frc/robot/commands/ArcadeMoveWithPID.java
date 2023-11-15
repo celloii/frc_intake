@@ -15,7 +15,7 @@ public class ArcadeMoveWithPID extends CommandBase {
     public static final double kI = 0;
     public static final double kD = 0.001;
     public static final double ticksPerFoot = 1024*Math.PI;
-    public static final double kMotorSpeed = 0.4;
+    public static final double kGearboxReduction = 10.65;
   }
   private Drivetrain m_drivetrain;
   private double m_distance;
@@ -25,7 +25,7 @@ public class ArcadeMoveWithPID extends CommandBase {
   /** Creates a new ArcadeMoveWithPID. */
   public ArcadeMoveWithPID(Drivetrain drivetrain, double distance) {
     m_drivetrain = drivetrain;
-    m_distance = distance*Config.ticksPerFoot;
+    m_distance = distance*Config.ticksPerFoot/Config.kGearboxReduction;
   }
 
 
@@ -40,8 +40,8 @@ public class ArcadeMoveWithPID extends CommandBase {
   @Override
   public void execute() {
     double m_PIDspeed = m_PID.calculate(m_drivetrain.getRightTicks() - m_leftStartPosition, m_distance);
-    m_drivetrain.setLeftSpeed(Config.kMotorSpeed*m_PIDspeed);
-    m_drivetrain.setRightSpeed(Config.kMotorSpeed*m_PIDspeed);
+    m_drivetrain.setLeftSpeed(m_PIDspeed);
+    m_drivetrain.setRightSpeed(m_PIDspeed);
   }
 
   // Called once the command ends or is interrupted.
@@ -54,7 +54,7 @@ public class ArcadeMoveWithPID extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Math.abs((m_drivetrain.getLeftTicks() - m_leftStartPosition - m_distance)) < 0.0002){
+    if(Math.abs((m_drivetrain.getLeftTicks() - m_leftStartPosition - m_distance)) < 200){
       return true;
     }
     else{

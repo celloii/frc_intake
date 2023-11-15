@@ -36,7 +36,6 @@ private Joystick m_joystick = new Joystick(Config.k_JoystickPort);
   private ArcadeIntake m_arcadeIntake = new ArcadeIntake(m_joystick,m_intake);
   private SequentialCommandGroup m_AutoPath = new AutoPath(m_drivetrain);
 
-
   
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
