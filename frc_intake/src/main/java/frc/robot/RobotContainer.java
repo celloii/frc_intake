@@ -5,7 +5,6 @@
 package frc.robot;
 
 import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.ArcadeIntake;
 import frc.robot.commands.ArcadeMoveWithPID;
 import frc.robot.commands.ArcadeTurnWithPID;
 import frc.robot.commands.AutoPath;
@@ -16,6 +15,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
@@ -28,13 +28,16 @@ public class RobotContainer{
   // The robot's subsystems and commands are defined here...
   private static final class Config{
     public static final int k_JoystickPort = 0;
+    public static final int kJoystickButtonPort = 1;
+    public static final int kJoystickButtonPort2 = 2;
 }
 private Joystick m_joystick = new Joystick(Config.k_JoystickPort);
   private Drivetrain m_drivetrain = new Drivetrain();
   private Intake m_intake = new Intake();
   private ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_joystick,m_drivetrain);
-  private ArcadeIntake m_arcadeIntake = new ArcadeIntake(m_joystick,m_intake);
   private SequentialCommandGroup m_AutoPath = new AutoPath(m_drivetrain);
+  private JoystickButton m_intakeButton = new JoystickButton(m_joystick, Config.kJoystickButtonPort);
+  private JoystickButton m_intakeButton2 = new JoystickButton(m_joystick, Config.kJoystickButtonPort2);
 
   
 
@@ -54,7 +57,8 @@ private Joystick m_joystick = new Joystick(Config.k_JoystickPort);
    * joysticks}.
    */
   private void configureBindings() {
-    
+    m_intakeButton.onTrue(m_intake.goForward());
+    m_intakeButton2.onTrue(m_intake.goBackward());
   }
 
   /**
@@ -64,7 +68,6 @@ private Joystick m_joystick = new Joystick(Config.k_JoystickPort);
    */
   public Command getAutonomousCommand() {
     m_drivetrain.getDefaultCommand(m_arcadeDrive);
-    m_arcadeIntake.schedule();
     return null;
     //return m_AutoPath;
   }
