@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import frc.robot.commands.ArcadeDrive;
@@ -12,15 +13,15 @@ import frc.robot.commands.ArcadeDrive;
 /** Add your docs here. */
 public class Drivetrain {
     private static final class Config{
-        public static final int kRightPrimaryID = 3;
-        public static final int kRightSecondaryID = 4;
-        public static final int kLeftPrimaryID=1;
-        public static final int kLeftSecondaryID=2;
+        public static final int kRightPrimaryID = 6;
+        public static final int kRightSecondaryID = 7;
+        public static final int kLeftPrimaryID = 3;
+        public static final int kLeftSecondaryID=8;
       }
     private WPI_TalonFX m_rightPrimary = new WPI_TalonFX(Config.kRightPrimaryID);
-    private WPI_TalonFX m_rightSecondary = new WPI_TalonFX(Config.kRightSecondaryID);
+    private VictorSPX m_rightSecondary = new VictorSPX(Config.kRightSecondaryID);
     private WPI_TalonFX m_leftPrimary = new WPI_TalonFX(Config.kLeftPrimaryID);
-    private WPI_TalonFX m_leftSecondary = new WPI_TalonFX(Config.kLeftSecondaryID);
+    private VictorSPX m_leftSecondary = new VictorSPX(Config.kLeftSecondaryID);
 
     public Drivetrain() {
       m_leftSecondary.follow(m_leftPrimary);
