@@ -11,11 +11,11 @@ import frc.robot.subsystems.Drivetrain;
 public class ArcadeMoveWithPID extends CommandBase {
 
   private static final class Config{
-    public static final double kP = 0.005;
-    public static final double kI = 0;
-    public static final double kD = 0.001;
-    public static final double ticksPerFoot = 1024*Math.PI;
-    public static final double kGearboxReduction = 10.65;
+    public static final double kP = 0.0001;
+    public static final double kI = 0.0000005;
+    public static final double kD = 0.000005;
+    public static final double ticksPerFoot = 4096/Math.PI;
+    public static final double kMotorSpeed = 0.4;
   }
   private Drivetrain m_drivetrain;
   private double m_distance;
@@ -25,7 +25,7 @@ public class ArcadeMoveWithPID extends CommandBase {
   /** Creates a new ArcadeMoveWithPID. */
   public ArcadeMoveWithPID(Drivetrain drivetrain, double distance) {
     m_drivetrain = drivetrain;
-    m_distance = distance*Config.ticksPerFoot/Config.kGearboxReduction;
+    m_distance = distance*Config.ticksPerFoot;
   }
 
 
@@ -39,9 +39,12 @@ public class ArcadeMoveWithPID extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double m_PIDspeed = m_PID.calculate(m_drivetrain.getRightTicks() - m_leftStartPosition, m_distance);
-    m_drivetrain.setLeftSpeed(m_PIDspeed);
-    m_drivetrain.setRightSpeed(m_PIDspeed);
+    double m_PIDspeed = m_PID.calculate(m_drivetrain.getLeftTicks() - m_leftStartPosition, m_distance);
+    m_drivetrain.setLeftSpeed(Config.kMotorSpeed*m_PIDspeed);
+    m_drivetrain.setRightSpeed(Config.kMotorSpeed*m_PIDspeed);
+    System.out.println(m_PIDspeed);
+    System.out.println(m_drivetrain.getLeftTicks() - m_leftStartPosition);
+    System.out.println(m_distance);
   }
 
   // Called once the command ends or is interrupted.
@@ -54,7 +57,7 @@ public class ArcadeMoveWithPID extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Math.abs((m_drivetrain.getLeftTicks() - m_leftStartPosition - m_distance)) < 200){
+    if(Math.abs((m_drivetrain.getLeftTicks() - m_leftStartPosition - m_distance)) < 0.0002){
       return true;
     }
     else{
