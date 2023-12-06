@@ -10,18 +10,15 @@ import frc.robot.subsystems.Drivetrain;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutoPath extends SequentialCommandGroup {
+  private Drivetrain m_drivetrain;
   /** Creates a new ArcadeSequentialCommandGroup. */
   public AutoPath(Drivetrain drivetrain) {
+    m_drivetrain = drivetrain;
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new ArcadeTurnWithPID(drivetrain, 0, 60),
-      new ArcadeTurnWithPID(drivetrain, 4.58, -120),
-      new ArcadeTurnWithPID(drivetrain, 9.16, 120),
-      new ArcadeTurnWithPID(drivetrain, 6.54, -120)
-    );
-
-    
+      new ArcadeMoveWithPID(m_drivetrain, 5)
+    );    
   }
 
 }
