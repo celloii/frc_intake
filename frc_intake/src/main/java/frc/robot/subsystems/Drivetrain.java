@@ -8,14 +8,16 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.ArcadeDrive;
 
 /** Add your docs here. */
-public class Drivetrain {
+public class Drivetrain extends SubsystemBase{
     private static final class Config{
-        public static final int kRightPrimaryID = 6;
+        public static final int kRightPrimaryID = 3;
         public static final int kRightSecondaryID = 7;
-        public static final int kLeftPrimaryID = 3;
+        public static final int kLeftPrimaryID=6;
         public static final int kLeftSecondaryID=8;
       }
     private WPI_TalonFX m_rightPrimary = new WPI_TalonFX(Config.kRightPrimaryID);
@@ -56,10 +58,9 @@ public class Drivetrain {
     
     //@Override
     public void periodic() {
-      // This method will be called once per scheduler run
+      SmartDashboard.putNumber("left", m_leftPrimary.get());
+      SmartDashboard.putNumber("right", m_rightPrimary.get());
     }
-
-    public void getDefaultCommand(ArcadeDrive m_arcadeDrive) {}
   
 
 }
