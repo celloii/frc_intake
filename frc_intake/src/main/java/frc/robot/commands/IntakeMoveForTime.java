@@ -11,7 +11,7 @@ import frc.robot.subsystems.Intake;
 public class IntakeMoveForTime extends CommandBase {
   private static final class Config
   {
-    public static final int k_JoystickPort = 1;
+    public static final int k_JoystickPort = 2;
   }
   
   private Intake m_intake;
@@ -53,6 +53,8 @@ public class IntakeMoveForTime extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return m_timer.get()-m_startTime > m_timeInSeconds;
+    
+  
   }
 }
