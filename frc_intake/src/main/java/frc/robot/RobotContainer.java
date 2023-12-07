@@ -5,10 +5,7 @@
 package frc.robot;
 
 import frc.robot.commands.ArcadeDrive;
-<<<<<<< HEAD
-=======
 // import frc.robot.commands.ArcadeIntake;
->>>>>>> d5a523f1c2951861c3d8d5d386075b90b91d927b
 import frc.robot.commands.ArcadeMoveWithPID;
 import frc.robot.commands.ArcadeTurnWithPID;
 import frc.robot.commands.AutoPath;
@@ -37,10 +34,8 @@ public class RobotContainer{
   private Drivetrain m_drivetrain = new Drivetrain();
   private Intake m_intake = new Intake();
   private ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_joystick,m_drivetrain);
-<<<<<<< HEAD
-=======
   // private ArcadeIntake m_arcadeIntake = new ArcadeIntake(m_joystick,m_intake);
->>>>>>> d5a523f1c2951861c3d8d5d386075b90b91d927b
+
   private SequentialCommandGroup m_autoPath = new AutoPath(m_drivetrain);
   private JoystickButton m_intakeMoveForTimeButton = new JoystickButton(m_joystick,Config.k_JoystickPort);
 
