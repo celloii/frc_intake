@@ -35,7 +35,12 @@ public class RobotContainer{
   private Intake m_intake = new Intake();
   private ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_joystick,m_drivetrain);
   // private ArcadeIntake m_arcadeIntake = new ArcadeIntake(m_joystick,m_intake);
+
   private SequentialCommandGroup m_autoPath = new AutoPath(m_drivetrain);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8141698557bfd050993fc6a155b3b400b0db06b2
 
   
 
