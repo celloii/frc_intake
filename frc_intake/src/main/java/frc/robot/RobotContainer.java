@@ -36,8 +36,6 @@ public class RobotContainer{
   private ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_joystick,m_drivetrain);
   // private ArcadeIntake m_arcadeIntake = new ArcadeIntake(m_joystick,m_intake);
   private SequentialCommandGroup m_autoPath = new AutoPath(m_drivetrain);
-  private JoystickButton m_intakeMoveForTimeButton = new JoystickButton(m_joystick,Config.k_JoystickPort);
-
 
   
 
