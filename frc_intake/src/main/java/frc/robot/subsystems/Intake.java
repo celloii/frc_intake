@@ -26,6 +26,9 @@ public class Intake extends SubsystemBase{
     public void setBackward(){
         m_intake.set(-1);
     }
+    public void setSpeed(double speed){
+        m_intake.set(speed);
+    }
     public InstantCommand goForward(){
         return new InstantCommand(this::setForward, this);
     }

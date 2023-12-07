@@ -40,8 +40,8 @@ public class ArcadeMoveWithPID extends CommandBase {
   @Override
   public void execute() {
     double m_PIDspeed = m_PID.calculate(m_drivetrain.getLeftTicks() - m_leftStartPosition, m_distance);
-    m_drivetrain.setLeftSpeed(Config.kMotorSpeed*m_PIDspeed);
-    m_drivetrain.setRightSpeed(Config.kMotorSpeed*m_PIDspeed);
+    m_drivetrain.setLeftSpeed(-Config.kMotorSpeed*m_PIDspeed);
+    m_drivetrain.setRightSpeed(-Config.kMotorSpeed*m_PIDspeed);
     System.out.println(m_PIDspeed);
     System.out.println(m_drivetrain.getLeftTicks() - m_leftStartPosition);
     System.out.println(m_distance);

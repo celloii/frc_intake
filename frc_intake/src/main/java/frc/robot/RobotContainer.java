@@ -5,7 +5,6 @@
 package frc.robot;
 
 import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.ArcadeIntake;
 import frc.robot.commands.ArcadeMoveWithPID;
 import frc.robot.commands.ArcadeTurnWithPID;
 import frc.robot.commands.AutoPath;
@@ -33,7 +32,6 @@ private Joystick m_joystick = new Joystick(Config.k_JoystickPort);
   private Drivetrain m_drivetrain = new Drivetrain();
   private Intake m_intake = new Intake();
   private ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_joystick,m_drivetrain);
-  private ArcadeIntake m_arcadeIntake = new ArcadeIntake(m_joystick,m_intake);
   private SequentialCommandGroup m_autoPath = new AutoPath(m_drivetrain);
 
 
