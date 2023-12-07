@@ -21,9 +21,9 @@ public class ArcadeDrive extends CommandBase {
   
   /** Creates a new ArcadeDrive. */
   public ArcadeDrive(Joystick joystick, Drivetrain drivetrain) {
-    // Use addRequirements() here to declare subsystem dependencies.
     m_drivetrain = drivetrain;
     m_joystick = joystick;
+    addRequirements(m_drivetrain);
   }
 
   // Called when the command is initially scheduled.
