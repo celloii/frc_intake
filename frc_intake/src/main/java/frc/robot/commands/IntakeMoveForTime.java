@@ -9,10 +9,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
 public class IntakeMoveForTime extends CommandBase {
-  private static final class Config
-  {
-    public static final int k_JoystickPort = 2;
-  }
   
   private Intake m_intake;
   private double m_speed;

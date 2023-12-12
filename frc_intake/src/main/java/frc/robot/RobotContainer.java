@@ -6,8 +6,6 @@ package frc.robot;
 
 import frc.robot.commands.ArcadeDrive;
 // import frc.robot.commands.ArcadeIntake;
-import frc.robot.commands.ArcadeMoveWithPID;
-import frc.robot.commands.ArcadeTurnWithPID;
 import frc.robot.commands.AutoPath;
 
 import frc.robot.subsystems.Drivetrain;

@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
 
@@ -14,7 +15,7 @@ public class ArcadeMoveWithPID extends CommandBase {
     public static final double kP = 0.0001;
     public static final double kI = 0.0;
     public static final double kD = 0.0;
-    public static final double ticksPerFoot = 4096/Math.PI;
+    public static final double ticksPerFoot = 16384/Math.PI;
     public static final double kMotorSpeed = 0.4;
   }
   private Drivetrain m_drivetrain;
@@ -42,9 +43,9 @@ public class ArcadeMoveWithPID extends CommandBase {
     double m_PIDspeed = m_PID.calculate(m_drivetrain.getLeftTicks() - m_leftStartPosition, m_distance);
     m_drivetrain.setLeftSpeed(-Config.kMotorSpeed*m_PIDspeed);
     m_drivetrain.setRightSpeed(-Config.kMotorSpeed*m_PIDspeed);
-    System.out.println(m_PIDspeed);
-    System.out.println(m_drivetrain.getLeftTicks() - m_leftStartPosition);
-    System.out.println(m_distance);
+    SmartDashboard.putNumber("speed", m_PIDspeed);
+    SmartDashboard.putNumber("ticks", m_drivetrain.getLeftTicks() - m_leftStartPosition);
+    SmartDashboard.putNumber("goal", m_distance);
   }
 
   // Called once the command ends or is interrupted.
