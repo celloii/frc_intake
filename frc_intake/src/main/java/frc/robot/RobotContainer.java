@@ -37,12 +37,8 @@ public class RobotContainer{
   // private ArcadeIntake m_arcadeIntake = new ArcadeIntake(m_joystick,m_intake);
 
   private SequentialCommandGroup m_autoPath = new AutoPath(m_drivetrain);
-<<<<<<< HEAD
-=======
 
->>>>>>> 8141698557bfd050993fc6a155b3b400b0db06b2
 
-  
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
