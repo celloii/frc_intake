@@ -12,28 +12,35 @@ import frc.robot.subsystems.Intake;
 public class ArcadeIntake extends CommandBase {
   /** Creates a new ArcadeIntake. */
   private static final class Config{
-    public static final int kJoystickButton = 1;
+    public static final int kJoystickButton1 = 1;
+    public static final int kJoystickButton2 = 2;
   }
 
   Intake m_intake;
   Joystick m_joystick;
-  JoystickButton m_joystickButton;
+  JoystickButton m_joystickButton1;
+  JoystickButton m_joystickButton2;
 
   public ArcadeIntake(Joystick joystick, Intake intake) {
     m_intake = intake;
     m_joystick = joystick;
-    m_joystickButton = new JoystickButton(m_joystick, Config.kJoystickButton);
+    m_joystickButton1 = new JoystickButton(m_joystick, Config.kJoystickButton1);
+    m_joystickButton2 = new JoystickButton(m_joystick, Config.kJoystickButton2);
     addRequirements(m_intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_joystickButton.whileTrue(m_intake.goForward());
+    m_joystickButton1.and(m_joystickButton2.negate()).onTrue(m_intake.goForward());
+    m_joystickButton2.and(m_joystickButton1.negate()).onTrue(m_intake.goBackward());
+    m_joystickButton1.and(m_joystickButton2).onFalse(m_intake.zero());
   }
 
   // Called once the command ends or is interrupted.

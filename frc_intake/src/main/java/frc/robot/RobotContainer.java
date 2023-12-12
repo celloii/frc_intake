@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.ArcadeIntake;
 // import frc.robot.commands.ArcadeIntake;
 import frc.robot.commands.AutoPath;
 
@@ -26,13 +27,13 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer{
   // The robot's subsystems and commands are defined here...
   private static final class Config{
-    public static final int k_JoystickPort = 1;
+    public static final int k_JoystickPort = 0;
 }
   private Joystick m_joystick = new Joystick(Config.k_JoystickPort);
   private Drivetrain m_drivetrain = new Drivetrain();
   private Intake m_intake = new Intake();
   private ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_joystick,m_drivetrain);
-  // private ArcadeIntake m_arcadeIntake = new ArcadeIntake(m_joystick,m_intake);
+  private ArcadeIntake m_arcadeIntake = new ArcadeIntake(m_joystick,m_intake);
 
   private SequentialCommandGroup m_autoPath = new AutoPath(m_drivetrain);
 
@@ -69,7 +70,7 @@ public class RobotContainer{
   }
   public Command getTeleopCommand(){
     m_drivetrain.setDefaultCommand(m_arcadeDrive);
-    //m_arcadeIntake.schedule();
+    m_arcadeIntake.schedule();
     return null;
   }
 }

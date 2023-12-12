@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 /** Add your docs here. */
 public class Intake extends SubsystemBase{
     private static final class Config{
-        private static final int deviceNumber = 0;
+        private static final int deviceNumber = 2;
     }
     private CANSparkMax m_intake = new CANSparkMax(Config.deviceNumber, MotorType.kBrushless);
 
@@ -22,10 +22,13 @@ public class Intake extends SubsystemBase{
 
     }
     public void setForward(){
-        m_intake.set(1);
+        m_intake.set(0.3);
     }
     public void setBackward(){
-        m_intake.set(-1);
+        m_intake.set(-0.3);
+    }
+    public void stop(){
+        m_intake.set(0);
     }
     public void setSpeed(double speed){
         m_intake.set(speed);
@@ -35,6 +38,9 @@ public class Intake extends SubsystemBase{
     }
     public InstantCommand goBackward(){
         return new InstantCommand(this::setBackward, this);
+    }
+    public InstantCommand zero(){
+        return new InstantCommand(this::stop, this);
     }
     //method
     
