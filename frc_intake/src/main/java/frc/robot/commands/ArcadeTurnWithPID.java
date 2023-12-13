@@ -14,7 +14,7 @@ public class ArcadeTurnWithPID extends CommandBase {
     public static final double kP = 0.0000001;
     public static final double kI = 0;
     public static final double kD = 0;
-    public static final double ticksPerFoot = 16384/Math.PI;
+    public static final double ticksPerFoot = 22000/Math.PI;
     public static final double kMotorSpeed = 0.4;
     public static final double kRobotWidth = 2.25;
   }
@@ -43,8 +43,8 @@ public class ArcadeTurnWithPID extends CommandBase {
   @Override
   public void execute() {
     double m_PIDspeed = m_pid.calculate(m_drivetrain.getRightTicks() - m_rightStartPosition, m_rightMotorGoal);
-    m_drivetrain.setLeftSpeed(-Config.kMotorSpeed*m_PIDspeed);
-    m_drivetrain.setRightSpeed(Config.kMotorSpeed*m_PIDspeed);
+    m_drivetrain.setLeftSpeed(-0.2);
+    m_drivetrain.setRightSpeed(0.2);
     SmartDashboard.putNumber("speed", m_PIDspeed);
   }
 

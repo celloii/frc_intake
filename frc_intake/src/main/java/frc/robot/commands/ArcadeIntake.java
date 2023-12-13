@@ -40,7 +40,7 @@ public class ArcadeIntake extends CommandBase {
   public void execute() {
     m_joystickButton1.and(m_joystickButton2.negate()).onTrue(m_intake.goForward());
     m_joystickButton2.and(m_joystickButton1.negate()).onTrue(m_intake.goBackward());
-    m_joystickButton1.and(m_joystickButton2).onFalse(m_intake.zero());
+    m_joystickButton1.negate().and(m_joystickButton2.negate()).onTrue(m_intake.zero());
   }
 
   // Called once the command ends or is interrupted.

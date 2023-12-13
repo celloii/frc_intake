@@ -22,10 +22,10 @@ public class Intake extends SubsystemBase{
 
     }
     public void setForward(){
-        m_intake.set(0.3);
+        m_intake.set(0.7);
     }
     public void setBackward(){
-        m_intake.set(-0.3);
+        m_intake.set(-0.7);
     }
     public void stop(){
         m_intake.set(0);

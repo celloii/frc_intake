@@ -13,8 +13,8 @@ public class ArcadeDrive extends CommandBase {
   private static final class Config{
       public static final int kLeftStickY = 1;
       public static final int kRightStickX=4;
-      public static final double kSpeedMultiplier = 0.2;
-      public static final double kTurnMultiplier = 0.5;
+      public static final double kSpeedMultiplier = 0.3;
+      public static final double kTurnMultiplier = 0.3;
   }
   private Drivetrain m_drivetrain;
   private Joystick m_joystick;
@@ -36,8 +36,8 @@ public class ArcadeDrive extends CommandBase {
   public void execute() {
     double speed = -m_joystick.getRawAxis(Config.kLeftStickY) * Config.kSpeedMultiplier;
     double turn = -m_joystick.getRawAxis(Config.kRightStickX) * Config.kTurnMultiplier;
-    double left = speed+turn;
-    double right = speed-turn;
+    double left = -speed-turn;
+    double right = -speed+turn;
     m_drivetrain.setLeftSpeed(left);
     m_drivetrain.setRightSpeed(right);
   }
